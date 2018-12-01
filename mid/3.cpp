@@ -52,6 +52,7 @@ int calculateChain(int now, string cur, int result) {
 }
 
 int main() {
+    ios::sync_with_stdio(false);
     int T;
     cin >> T;
 

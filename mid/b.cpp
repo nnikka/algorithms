@@ -13,6 +13,7 @@ map<char, int> amap;
 map<char, int> bmap;
 
 int main() {
+    ios::sync_with_stdio(false);
     string a;
     string b;   
     cin >> a;

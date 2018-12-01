@@ -6,6 +6,7 @@
         "complex": "cpp",
         "cstdlib": "cpp",
         "iosfwd": "cpp",
-        "ratio": "cpp"
+        "ratio": "cpp",
+        "algorithm": "cpp"
     }
 }
