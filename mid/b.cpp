@@ -9,8 +9,8 @@
 
 using namespace std; 
 
-map<char, int> amap;
-map<char, int> bmap;
+int Asubar[26];
+int Bar[26];
 
 int main() {
     ios::sync_with_stdio(false);
@@ -19,45 +19,42 @@ int main() {
     cin >> a;
     cin >> b;
 
-    for(char i='a'; i < 'a' + 26; ++i) {
-        amap[i] = 0;
-        bmap[i] = 0;
+    if (b.length() > a.length()) {
+        cout << "NO" << endl;
+        return 0;
     }
-    for (int i = 0; i < a.length(); i++) {
-        char c = a.at(i);
-        amap[c]++;
-    }
+
     for (int i = 0; i < b.length(); i++) {
-        char c = b.at(i);
-        bmap[c]++;
-    }
-    for(char i='a'; i < 'a' + 26; ++i) {
-        if (bmap[i] > amap[i]) {
-            cout << "NO" << endl;
-            return 0;
-        }
+        char ch = b.at(i);
+        int index = ch - 'a';
+        Bar[index]++;
+        char ach = a.at(i);
+        index = ach - 'a';
+        Asubar[index]++;
     }
 
-    sort(b.begin(), b.end());
+    int match = 0;
 
-    for (int i = 0; i <= (a.length() - b.length()); i++) {
-        string asub = "";
-        for (int j = 0; j < b.length(); j++) {
-            asub += a.at(i + j);
+    for (int i = 0; i < (a.length() - b.length() + 1); i++) {
+        match = 0;
+        if (i != 0) {
+            char aprevch = a.at(i - 1);
+            int index = aprevch - 'a';
+            Asubar[index]--;
+
+            char curChar =a.at(i + b.length()-1);
+            index = curChar - 'a';
+            Asubar[index]++;
         }
-        sort(asub.begin(), asub.end());
-        int result = 0;
-        for  (int j = 0; j < b.length(); j++) {
-            if (b.at(j) != asub.at(j)) {
-                j = b.length();
-            } else {
-                result++;
+        for (int j = 0; j < 26; j++) {
+            if (Asubar[j] == Bar[j]) {
+                match++;
             }
         }
-        if (result == b.length()) {
+        if (match == 26) {
             cout << "YES" << endl;
             return 0;
-        } 
+        }
     }
 
     cout << "NO" << endl;
